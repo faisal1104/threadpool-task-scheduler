@@ -16,8 +16,8 @@ public class Sheduler1Controller {
   @PostMapping("/with-cron-expression")
   public String startCronScheduler(@RequestParam String cronExpression){
     var cronTrigger = new CronTrigger(cronExpression);
-    taskScheduler.initialize();
     taskScheduler.setBeanName("scheduler1");
+    taskScheduler.initialize();
     taskScheduler.schedule(new ThreadPoolTaskSchedulerDemo1(), cronTrigger);
     return "Scheduler-1 with cron expression started";
   }
@@ -25,6 +25,6 @@ public class Sheduler1Controller {
   @GetMapping("/stop")
   public String stopScheduler(){
     taskScheduler.shutdown();
-    return "stopped 1";
+    return "Scheduler-2 Stopped";
   }
 }
