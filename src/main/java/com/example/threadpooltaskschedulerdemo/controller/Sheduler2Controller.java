@@ -6,8 +6,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
-
 @RestController
 @RequestMapping("/scheduler2")
 public class Sheduler2Controller {
@@ -16,7 +14,7 @@ public class Sheduler2Controller {
   private ThreadPoolTaskScheduler taskScheduler;
 
   @PostMapping("/with-cron-expression")
-  public String startCronSceduler(@RequestParam String cronExpression){
+  public String startCronScheduler(@RequestParam String cronExpression){
     var cronTrigger = new CronTrigger(cronExpression);
     taskScheduler.initialize();
     taskScheduler.setBeanName("scheduler2");
@@ -25,7 +23,7 @@ public class Sheduler2Controller {
   }
 
   @GetMapping("/stop")
-  public String stopSceduler(){
+  public String stopScheduler(){
     taskScheduler.shutdown();
     return "stopped 2";
   }
